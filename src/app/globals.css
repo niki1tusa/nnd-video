@@ -1,8 +1,43 @@
 @import 'tailwindcss';
-
-
 @theme {
-	--color-primary: #AD2528;
-	--color-bg: #191B28;
-	--color-border: #2A3439;
+	--sidebar-width: 15rem;
+
+	--color-primary: #ad2528;
+	--color-bg: #191b28;
+	--color-border: #2a3439;
+
+	--spacing-layout: 2rem;
+}
+
+@keyframes hideSidebar {
+	from {
+		transform: translateX(0);
+		width: var(--sidebar-width);
+	}
+	to {
+		width: 3.8rem;
+	}
+}
+@keyframes showSidebar {
+	from {
+		width: 3.8rem;
+	}
+	to {
+		transform: translateX(0);
+		width: var(--sidebar-width);
+	}
+}
+
+@layer utilities {
+	.sidebar-hidden aside{
+		animation: hideSidebar 0.35s forwards;
+	}
+
+	.sidebar-shown aside{
+		width: var(--sidebar-width);
+		animation: showSidebar 0.3s forwards;
+	}
+	.content-expanded div{
+		@apply w-full;
+	}
 }

@@ -1,6 +1,6 @@
 
 export const Header = () => {
   return (
-    <header>Header</header>
+    <header className="p-layout">Header</header>
   )
 }

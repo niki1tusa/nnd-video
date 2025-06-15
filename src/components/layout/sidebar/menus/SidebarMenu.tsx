@@ -1,8 +1,9 @@
 import cn from 'clsx';
-
+import {match} from 'path-to-regexp'
 import type { SidebarItem } from '../sidebar.types';
 
 import { MenuItem } from './MenuItem';
+import { usePathname } from 'next/navigation';
 
 interface Props {
 	title?: string;
@@ -10,6 +11,8 @@ interface Props {
 	showSidebar?: boolean;
 }
 export const SidebarMenu = ({ showSidebar, menu, title }: Props) => {
+	const pathname = usePathname()
+	console.log(pathname)
 	return (
 		<nav>
 			{title && (
@@ -22,7 +25,7 @@ export const SidebarMenu = ({ showSidebar, menu, title }: Props) => {
 			)}
 			<ul>
 				{menu.map(item => (
-					<MenuItem key={item.label} item={item} />
+					<MenuItem key={item.label} item={item} isActive={!!match(item.link)(pathname)}/>
 				))}
 			</ul>
 		</nav>

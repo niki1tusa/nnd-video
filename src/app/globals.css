@@ -9,35 +9,43 @@
 	--spacing-layout: 2rem;
 }
 
-@keyframes hideSidebar {
-	from {
-		transform: translateX(0);
-		width: var(--sidebar-width);
-	}
-	to {
-		width: 3.8rem;
-	}
-}
-@keyframes showSidebar {
-	from {
-		width: 3.8rem;
-	}
-	to {
-		transform: translateX(0);
-		width: var(--sidebar-width);
-	}
-}
-
 @layer utilities {
-	.sidebar-hidden aside{
-		animation: hideSidebar 0.35s forwards;
+	/* Скрытый сайдбар */
+	.hidedSidebar > aside {
+		width: 3.8rem;
+		flex-grow: 0;
 	}
 
-	.sidebar-shown aside{
-		width: var(--sidebar-width);
-		animation: showSidebar 0.3s forwards;
+	.hidedSidebar > aside > nav > div:first-child {
+		opacity: 0;
+		transition: opacity 0.35s;
 	}
-	.content-expanded div{
+
+	.hidedSidebar > div {
+		width: 100%;
+	}
+
+	/* Показанный сайдбар */
+	.showedSidebar > aside {
+		width: var(--sidebar-width);
+	}
+
+	/* Начальное состояние сайдбара с анимацией */
+	.initialSidebar > aside {
+		transition: width 0.35s;
+	}
+
+	/* Старые классы для обратной совместимости */
+	.sidebar-hidden aside {
+		width: 3.8rem;
+		flex-grow: 0;
+	}
+
+	.sidebar-shown aside {
+		width: var(--sidebar-width);
+	}
+
+	.content-expanded div {
 		@apply w-full;
 	}
 }

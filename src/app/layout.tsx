@@ -4,6 +4,7 @@ import { Open_Sans } from 'next/font/google';
 
 import { Layout } from '@/components/layout/Layout';
 
+import { Providers } from '@/providers/Provider';
 
 import './globals.css';
 
@@ -12,7 +13,10 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-	title: 'NND video',
+	title: {
+		absolute: 'NND Video',
+		template: `%s | NND Video`
+	},
 	description: 'Gentle app for wathing video.',
 };
 
@@ -24,7 +28,9 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={cn(openSans.className, `bg-bg text-white `)}>
-				<Layout>{children}</Layout>
+				<Providers>
+					<Layout>{children}</Layout>
+				</Providers>
 			</body>
 		</html>
 	);

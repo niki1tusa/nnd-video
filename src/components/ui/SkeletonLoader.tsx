@@ -10,7 +10,7 @@ export function SkeletonLoader({count = 1, style,  className = ''
 }: Props) {
     return <>
     {Array.from({length: count}).map((_, index)=>(
-        <div key={index} style={style} className={twMerge('bg-gray-400 rounded-sm h-10 mb-2.5 animate-pulse', className)}/>
+        <div key={index} style={style} className={twMerge('bg-slate-800 rounded-sm h-10 mb-2.5 animate-pulse', className)}/>
     ))}
     </>
 }

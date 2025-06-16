@@ -30,8 +30,8 @@ export default async function Home() {
 		<section>
 			<section className='mb-10'>
 				<Heading Icon={Flame}>Trending</Heading> 
-				<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6 sm:gap-6'>
-					{trendVideos &&
+				<div className='gridClass'>
+					{!!trendVideos &&
 						trendVideos.map((video: VideoTypes) => (
 							<VideoItem key={video.title} video={video} Icon={Flame} />
 						))}

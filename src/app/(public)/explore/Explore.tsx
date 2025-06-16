@@ -19,7 +19,7 @@ export default function Explore() {
 	return (
 		<section>
 			<Heading Icon={Compass}>Explore</Heading>
-			<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6 sm:gap-6'>
+			<div className='gridClass'>
 				{isLoading
 					? <SkeletonLoader count={6} className='h-40 rounded-md'/>
 					: videos.length !== 0 &&

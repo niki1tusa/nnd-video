@@ -11,7 +11,7 @@ const [showSidebar, setShowSidebar] = useState(true)
 const toggleSidebar = () => setShowSidebar(!showSidebar)
 
 	return (
-		<main className={cn('flex min-h-screen', showSidebar? 'sidebar-shown': 'sidebar-hidden')}>
+		<main className={cn('flex min-h-screen initialSidebar', showSidebar? 'showedSidebar': 'hidedSidebar')}>
 			<Sidebar showSidebar={showSidebar} toggleSidebar={toggleSidebar}/>
 			<Content>{children}</Content>
 		</main>

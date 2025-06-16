@@ -1,6 +1,7 @@
 import { CircleAlert, Compass, Flame, FolderHeart, Gamepad, History, PanelsTopLeft, Podcast, Settings } from "lucide-react";
 import type { SidebarItem } from "./sidebar.types";
 import { PAGE } from "@/config/public-page.config";
+import { STUDIO_PAGE } from "@/config/studio-page.config";
 
 export const SIDEBAR_DATA: SidebarItem[] = [
 {
@@ -46,7 +47,7 @@ export const MORE_SIDEBAR_DATA: SidebarItem[] = [
  {
     icon: Settings,
     label: 'Settings',
-    link: PAGE.SETTINGS,
+    link: STUDIO_PAGE.SETTINGS,
 },
 {
     icon: CircleAlert,

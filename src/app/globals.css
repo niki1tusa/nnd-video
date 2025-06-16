@@ -34,18 +34,12 @@
 	.initialSidebar > aside {
 		transition: width 0.35s;
 	}
-
-	/* Старые классы для обратной совместимости */
-	.sidebar-hidden aside {
-		width: 3.8rem;
-		flex-grow: 0;
-	}
-
-	.sidebar-shown aside {
-		width: var(--sidebar-width);
-	}
-
-	.content-expanded div {
-		@apply w-full;
+	.gridClass{
+		@apply grid grid-cols-1 gap-6
+		sm:grid-cols-2 sm:gap-6
+		md:grid-cols-3
+		lg:grid-cols-4
+		xl:grid-cols-5
+		2xl:grid-cols-6;
 	}
 }

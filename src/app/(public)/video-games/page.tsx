@@ -1,40 +1,40 @@
-import { Flame } from 'lucide-react';
+import { Gamepad2 } from 'lucide-react';
 import type { Metadata } from 'next';
 
 import { Heading } from '@/ui/Heading';
 import { VideoItem } from '@/ui/video-item/VideoItem';
 
-import { videoService } from '@/services/video.service';
-import type { VideoTypes } from '@/types/video.types';
 import { PAGE } from '@/config/public-page.config';
 
+import { videoService } from '@/services/video.service';
+import type { VideoTypes } from '@/types/video.types';
+
 export const metadata: Metadata = {
-	title: 'Trending',
-	description: 'This is trending page',
-		alternates: {
-		canonical: PAGE.TRENDING,
+	title: 'Video games',
+	description: 'This is video games page',
+	alternates: {
+		canonical: PAGE.VIDEO_GAMES,
 	},
 	openGraph: {
 		type: 'website',
-		url: PAGE.TRENDING,
-		title: 'Trending Video',
+		url: PAGE.VIDEO_GAMES,
+		title: 'Video Game',
 	},
 };
 
 export const revalidate = 100;
 export const dynamic = 'force-static';
 
-export default async function TrendingPage() {
-	const data = await videoService.getTrendVideos();
-	const trendVideos = data.data 
-	
+export default async function VideoGamesPage() {
+	const data = await videoService.getGameVideos();
+	const videos = data.data.videos;
 	return (
 		<section className='mb-10'>
-			<Heading Icon={Flame}>Trending</Heading>
+			<Heading Icon={Gamepad2}>Video games</Heading>
 			<div className='gridClass'>
-				{trendVideos.length? (
-					trendVideos.map((video: VideoTypes) => (
-						<VideoItem key={video.title} video={video} Icon={Flame} />
+				{videos.length ? (
+					videos.map((video: VideoTypes) => (
+						<VideoItem key={video.title} video={video}  />
 					))
 				) : (
 					<div>Trends Temporarily unavailable</div>

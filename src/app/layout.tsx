@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 		absolute: 'NND Video',
 		template: `%s | NND Video`
 	},
-	description: 'Gentle app for wathing video.',
+	description: 'Gentle app for watching video.',
 };
 
 export default function RootLayout({

@@ -1,3 +1,4 @@
+import * as m from 'framer-motion/m';
 import { Check, type LucideIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -16,7 +17,18 @@ interface Props {
 
 export function VideoItem({ video, Icon }: Props) {
 	return (
-		<div className='max-w-[320px]'>
+		<m.div className='max-w-[320px]' whileHover={{
+			scale: 1.03,
+			y: -5,
+		}}
+		transition={{
+			//пружина
+			type: 'spring',
+			// жесткость
+			stiffness: 500,
+			// демпфирование
+			damping: 30
+		}}>
 			<div className='relative mb-2'>
 				<Link href={PAGE.VIDEO(video.slug)}>
 					<Image
@@ -39,7 +51,7 @@ export function VideoItem({ video, Icon }: Props) {
 			</div>
 			<div className='mb-2 flex items-center justify-between '>
 				<div className='flex items-center gap-1'>
-					{Icon && <Icon className='text-primary' size={20}/>}
+					{Icon && <Icon className='text-primary' size={20} />}
 					<span className='text-gray-400 text-sm'>{transformViews(video.viewsCount)}</span>
 				</div>
 				<div>
@@ -47,14 +59,16 @@ export function VideoItem({ video, Icon }: Props) {
 				</div>
 			</div>
 			<div className='mb-1'>
-				<Link href={PAGE.CHANNEL(video.channel.slug)} className='line-clamp-2 leading-tight'>{video.title}</Link>
+				<Link href={PAGE.CHANNEL(video.channel.slug)} className='line-clamp-2 leading-tight'>
+					{video.title}
+				</Link>
 			</div>
 			<div>
 				<Link href={PAGE.CHANNEL(video.channel.slug)} className='flex items-center gap-1'>
 					<span className='text-gray-500 text-sm'>{video.channel.user.name}</span>
-					<span>{video.channel.isVerified && <Check className='text-green-500' size={15}/>}</span>
+					<span>{video.channel.isVerified && <Check className='text-green-500' size={15} />}</span>
 				</Link>
 			</div>
-		</div>
+		</m.div>
 	);
 }

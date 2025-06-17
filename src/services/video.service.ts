@@ -1,14 +1,17 @@
-import axios from 'axios';
+import { axiosClassic } from '@/api/axios';
 
 import type { VideoTypes } from '@/types/video.types';
 
-interface ExploreVideosResponse {
+
+interface ObjectVideosResponse {
 	videos: VideoTypes[];
 }
 class VideoService {
+	private _VIDEOS = '/videos';
+
 	getAll(searchTerm?: string | null) {
-		return axios.get(
-			'http://localhost:4200/api/videos',
+		return axiosClassic.get(
+			this._VIDEOS,
 			searchTerm
 				? {
 						params: {
@@ -18,11 +21,14 @@ class VideoService {
 				: {}
 		);
 	}
+	getGameVideos() {
+		return axiosClassic.get<ObjectVideosResponse>(`${this._VIDEOS}/games`);
+	}
 	getTrendVideos() {
-		return axios.get('http://localhost:4200/api/videos/trending');
+		return axiosClassic.get(`${this._VIDEOS}/trending`);
 	}
 	getExploreVideos() {
-		return axios.get<ExploreVideosResponse>('http://localhost:4200/api/videos/explore');
+		return axiosClassic.get<ObjectVideosResponse>(`${this._VIDEOS}/explore`);
 	}
 }
 export const videoService = new VideoService();

@@ -1,10 +1,11 @@
-import * as m from 'framer-motion/m';
 import { Check, type LucideIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+// import * as m from 'framer-motion/m';
 import { PAGE } from '@/config/public-page.config';
 
+import { HoverAnimationVideoItem } from '@/utils/animations/HoverAnimation';
 import { transformDate } from '@/utils/transform-data';
 import { transformViews } from '@/utils/transform-views';
 
@@ -17,18 +18,7 @@ interface Props {
 
 export function VideoItem({ video, Icon }: Props) {
 	return (
-		<m.div className='max-w-[320px]' whileHover={{
-			scale: 1.03,
-			y: -5,
-		}}
-		transition={{
-			//пружина
-			type: 'spring',
-			// жесткость
-			stiffness: 500,
-			// демпфирование
-			damping: 30
-		}}>
+		<HoverAnimationVideoItem>
 			<div className='relative mb-2'>
 				<Link href={PAGE.VIDEO(video.slug)}>
 					<Image
@@ -69,6 +59,6 @@ export function VideoItem({ video, Icon }: Props) {
 					<span>{video.channel.isVerified && <Check className='text-green-500' size={15} />}</span>
 				</Link>
 			</div>
-		</m.div>
+		</HoverAnimationVideoItem>
 	);
 }

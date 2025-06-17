@@ -6,8 +6,10 @@ import { Compass } from 'lucide-react';
 import { Heading } from '@/ui/Heading';
 import { SkeletonLoader } from '@/ui/SkeletonLoader';
 import { VideoItem } from '@/ui/video-item/VideoItem';
-
+import { FlyToRight } from '../../../utils/animations/FlyAnimation';
 import { videoService } from '@/services/video.service';
+
+
 
 export default function Explore() {
 	const { data, isLoading } = useQuery({
@@ -24,7 +26,7 @@ export default function Explore() {
 				{isLoading ? (
 					<SkeletonLoader count={6} className='h-40 rounded-md' />
 				) : videos.length ? (
-					videos.map(video => <VideoItem key={video.title} video={video} />)
+					videos.map(video => <FlyToRight key={video.title}><VideoItem   video={video} /></FlyToRight> )
 				) : (
 					<div>Trends Temporarily unavailable</div>
 				)}

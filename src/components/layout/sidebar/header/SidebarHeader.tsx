@@ -1,17 +1,14 @@
-import { Menu, Play } from 'lucide-react';
-import Link from 'next/link';
+import { Menu } from 'lucide-react';
+
+import { Logo } from './Logo';
 
 export function SidebarHeader({ toggleSidebar }: { toggleSidebar: () => void }) {
 	return (
 		<div className='flex items-center gap-5 mb-15'>
 			<button onClick={toggleSidebar} className='opacity-80 hover:opacity-100 transition-opacity'>
-				<Menu/>
+				<Menu />
 			</button>
-
-			<Link href='/' className='flex items-center gap-1'>
-				<Play className='text-primary' size={28} />
-				<span className='font-medium text-xl'>NndTube</span>
-			</Link>
+			<Logo />
 		</div>
 	);
 }

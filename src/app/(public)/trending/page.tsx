@@ -7,6 +7,8 @@ import { VideoItem } from '@/ui/video-item/VideoItem';
 import { videoService } from '@/services/video.service';
 import type { VideoTypes } from '@/types/video.types';
 import { PAGE } from '@/config/public-page.config';
+import { FlyToRight } from '../../../utils/animations/FlyAnimation';
+
 
 export const metadata: Metadata = {
 	title: 'Trending',
@@ -34,7 +36,7 @@ export default async function TrendingPage() {
 			<div className='gridClass'>
 				{trendVideos.length? (
 					trendVideos.map((video: VideoTypes) => (
-						<VideoItem key={video.title} video={video} Icon={Flame} />
+					<FlyToRight key={video.title}><VideoItem  video={video} Icon={Flame} /></FlyToRight>	
 					))
 				) : (
 					<div>Trends Temporarily unavailable</div>

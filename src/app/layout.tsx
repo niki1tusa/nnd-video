@@ -29,7 +29,7 @@ export default function RootLayout({
 		<html lang='en'>
 			<body className={cn(openSans.className, `bg-bg text-white `)}>
 				<Providers>
-					<Layout>{children}</Layout>
+					{children}
 				</Providers>
 			</body>
 		</html>

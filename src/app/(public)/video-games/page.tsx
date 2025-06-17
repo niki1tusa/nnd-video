@@ -6,6 +6,8 @@ import { VideoItem } from '@/ui/video-item/VideoItem';
 
 import { PAGE } from '@/config/public-page.config';
 
+import { FlyToRight } from '@/utils/animations/FlyAnimation';
+
 import { videoService } from '@/services/video.service';
 import type { VideoTypes } from '@/types/video.types';
 
@@ -34,7 +36,9 @@ export default async function VideoGamesPage() {
 			<div className='gridClass'>
 				{videos.length ? (
 					videos.map((video: VideoTypes) => (
-						<VideoItem key={video.title} video={video}  />
+						<FlyToRight key={video.title}>
+							<VideoItem video={video} />
+						</FlyToRight>
 					))
 				) : (
 					<div>Trends Temporarily unavailable</div>

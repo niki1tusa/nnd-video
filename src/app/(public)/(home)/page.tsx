@@ -4,7 +4,9 @@ import type { Metadata } from 'next';
 import { Heading } from '@/ui/Heading';
 import { VideoItem } from '@/ui/video-item/VideoItem';
 
-import Explore from './explore/Explore';
+import { FlyToRight } from '@/utils/animations/FlyAnimation';
+
+import Explore from '../explore/Explore';
 import { videoService } from '@/services/video.service';
 import type { VideoTypes } from '@/types/video.types';
 
@@ -34,7 +36,9 @@ export default async function Home() {
 					<Heading Icon={Flame}>Trending</Heading>
 					<div className='gridClass'>
 						{trendVideos.map((video: VideoTypes) => (
-							<VideoItem key={video.title} video={video} Icon={Flame} />
+							<FlyToRight key={video.title}>
+								<VideoItem video={video} Icon={Flame} />
+							</FlyToRight>
 						))}
 					</div>
 				</section>

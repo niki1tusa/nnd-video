@@ -1,5 +1,6 @@
 class PublicPage {
 	HOME = '/';
+	AUTH = '/auth';
 	TRENDING = '/trending';
 	VIDEO_GAMES = '/video-games';
 
@@ -17,8 +18,8 @@ class PublicPage {
 		return `/C/${path}`;
 	}
 
-	SEARCH(searchTerm: string){
-		return `/search?term=${searchTerm}`
+	SEARCH(searchTerm: string) {
+		return `/search?term=${searchTerm}`;
 	}
 }
 export const PAGE = new PublicPage();

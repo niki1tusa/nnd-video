@@ -1,14 +1,15 @@
 import Cookies from 'js-cookie';
 
+import { clearAuthData, setAuthData } from '@/store/auth.slice';
+
 import { axiosClassic } from '@/api/axios';
 
+import { store } from '@/store';
 import type { AuthDataTypes } from '@/types/auth-form.types';
 import type { UserTypes } from '@/types/user.types';
+import { EnumTokens } from '@/types/enum-token.types';
 
-export enum EnumTokens {
-	'ACCESS_TOKEN' = 'accessToken',
-	'REFRESH_TOKEN' = 'refreshToken',
-}
+
 interface AuthResponse {
 	user: UserTypes;
 	accessToken: string;
@@ -36,12 +37,16 @@ class AuthService {
 		const token = response.data.accessToken;
 		if (token) {
 			this._SAVE_TOKEN_STORAGE(token);
+			store.dispatch(setAuthData(response.data));
 		}
 		return response;
 	}
 	async logout() {
 		const response = await axiosClassic.post<boolean>(`${this._AUTH}/logout`);
-		if (response.data) this._REMOVE_FROM_STORAGE();
+		if (response.data) {
+			this._REMOVE_FROM_STORAGE()
+					store.dispatch(clearAuthData())
+};
 		return response;
 	}
 
@@ -51,6 +56,7 @@ class AuthService {
 		const token = response.data.accessToken;
 		if (token) {
 			this._SAVE_TOKEN_STORAGE(token);
+			store.dispatch(setAuthData(response.data));
 		}
 		return response;
 	}

@@ -12,7 +12,6 @@ interface Props {
 }
 export const SidebarMenu = ({ showSidebar, menu, title }: Props) => {
 	const pathname = usePathname()
-	console.log(pathname)
 	return (
 		<nav>
 			{title && (
@@ -25,7 +24,7 @@ export const SidebarMenu = ({ showSidebar, menu, title }: Props) => {
 			)}
 			<ul>
 				{menu.map(item => (
-					<MenuItem key={item.label} item={item} isActive={!!match(item.link)(pathname)}/>
+					<MenuItem key={item.label} item={item} isActive={!!match(item.link)(pathname)} showSidebar={showSidebar}/>
 				))}
 			</ul>
 		</nav>

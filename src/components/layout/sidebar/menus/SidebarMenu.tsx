@@ -16,7 +16,7 @@ export const SidebarMenu = ({ showSidebar, menu, title }: Props) => {
 		<nav>
 			{title && (
 				<div
-					className={cn('mb-3  uppercase text-xs font-medium transition-all duration-350 ease-in-out', 
+					className={cn('text-xs mb-3 uppercase  font-medium transition-all duration-350 ease-in-out', 
 						showSidebar? 'opacity-20': 'opacity-0')}
 				>
 					{title}

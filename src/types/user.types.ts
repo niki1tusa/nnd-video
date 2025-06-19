@@ -9,5 +9,6 @@ export interface UserTypes {
 export interface FullUserTypes extends UserTypes {
 	channel?: ChannelTypes;
     subscriptions: ChannelTypes[];
-    watchHistory: WatchHistoryTypes
+    watchHistory: WatchHistoryTypes[];
+	verificationToken?: string | null
 }

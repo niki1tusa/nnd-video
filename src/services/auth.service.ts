@@ -6,9 +6,8 @@ import { axiosClassic } from '@/api/axios';
 
 import { store } from '@/store';
 import type { AuthDataTypes } from '@/types/auth-form.types';
-import type { UserTypes } from '@/types/user.types';
 import { EnumTokens } from '@/types/enum-token.types';
-
+import type { UserTypes } from '@/types/user.types';
 
 interface AuthResponse {
 	user: UserTypes;
@@ -21,11 +20,13 @@ class AuthService {
 		Cookies.set(EnumTokens.ACCESS_TOKEN, accessToken, {
 			domain: 'localhost',
 			sameSite: 'strict',
-			expires: 1,
+			expires: 1 / 24,
+			secure: true,
 		});
 	}
-	private _REMOVE_FROM_STORAGE() {
+	REMOVE_FROM_STORAGE() {
 		Cookies.remove(EnumTokens.ACCESS_TOKEN);
+		store.dispatch(clearAuthData());
 	}
 
 	async main(type: 'login' | 'register', data: AuthDataTypes, recaptchaToken?: string | null) {
@@ -44,10 +45,19 @@ class AuthService {
 	async logout() {
 		const response = await axiosClassic.post<boolean>(`${this._AUTH}/logout`);
 		if (response.data) {
-			this._REMOVE_FROM_STORAGE()
-					store.dispatch(clearAuthData())
-};
+			this.REMOVE_FROM_STORAGE();
+		}
 		return response;
+	}
+
+	async initializeAuth() {
+		const accessToken = Cookies.get(EnumTokens.ACCESS_TOKEN);
+		if (accessToken) return;
+		try {
+			await this.getNewTokens()
+		} catch(error) {
+			store.dispatch(clearAuthData())
+		}
 	}
 
 	// by client

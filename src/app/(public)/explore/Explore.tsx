@@ -16,7 +16,6 @@ export default function Explore() {
 		queryKey: ['explore'],
 		queryFn: () => videoService.getExploreVideos(),
 	});
-	console.log(data?.data)
 	const videos = data?.data?.videos || [];
 
 	return (

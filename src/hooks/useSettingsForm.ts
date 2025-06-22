@@ -9,15 +9,34 @@ import type { ISettingsData } from '@/types/settings.types';
 export function useSettingsForm() {
 	const form = useForm<ISettingsData>({ mode: 'onChange' });
 
-	const { profile, isSuccess, isLoading } = useProfile();
+	const { profile, isSuccess, isLoading, refetch } = useProfile();
+
 	useEffect(() => {
 		if (!isSuccess) return;
-		form.reset(profile);
+
+		const channel = profile?.channel
+			? {
+					avatarUrl: profile?.channel.avatarUrl,
+					bannerUrl: profile?.channel.bannerUrl,
+					description: profile?.channel.description,
+					slug: profile?.channel.slug,
+				}
+			: {};
+
+		form.reset({
+			channel,
+			email: profile?.email,
+			name: profile?.name,
+		});
 	}, [form, profile, isSuccess]);
-	// reset - устанавливает начальные значения из profile (reset - сбрасывает и вставляет новые значения) 
+	// reset - устанавливает начальные значения из profile (reset - сбрасывает и вставляет новые значения)
+
 	const { mutate, isPending } = useMutation({
 		mutationKey: ['update-settings'],
 		mutationFn: (data: ISettingsData) => userService.updateProfile(data),
+		onSuccess() {
+			refetch();
+		},
 	});
 
 	const onSubmit: SubmitHandler<ISettingsData> = data => {

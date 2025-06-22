@@ -16,7 +16,7 @@ export function Field({ label, error, registration, ...props }: Props) {
 
 				<input
 					className={clsx(
-						'w-full bg-transparent px-3 py-2  border rounded shadow-sm border-transparent transition-colors focus:outline-none focus:ring-0 focus:border-gray-500',
+						'w-full bg-transparent px-3 py-2  border rounded shadow-sm border-gray-700 transition-colors focus:outline-none focus:ring-0 focus:border-gray-500',
 						error ? 'border-red-500' : 'border-border'
 					)}
 					{...registration}
